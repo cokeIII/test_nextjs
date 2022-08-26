@@ -24,6 +24,7 @@ export default function Register() {
     });
     const result = await res.json();
     console.log(JSON.stringify(result))
+    alert(JSON.stringify(result))
   };
   return (
     <div className="container">
