@@ -1,4 +1,16 @@
 export default function Register() {
+  const submitDel = async (event) => {
+    const res = await fetch("/api/users/users", {
+      body: JSON.stringify({
+        id: '1',
+        act: "delUsers",
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+    });
+  };
   const submitRegister = async (event) => {
     event.preventDefault();
 
@@ -8,23 +20,23 @@ export default function Register() {
     const phone = event.target.phone.value;
     const password = event.target.password.value;
 
-    const res = await fetch('/api/users/users', {
+    const res = await fetch("/api/users/users", {
       body: JSON.stringify({
         email: email,
-        fname:fname,
-        lname:lname,
-        phone:phone,
-        password:password,
-        act:"show"
+        fname: fname,
+        lname: lname,
+        phone: phone,
+        password: password,
+        act: "insertUsers",
       }),
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
-      method: 'POST',
+      method: "POST",
     });
     const result = await res.json();
-    console.log(JSON.stringify(result))
-    alert(JSON.stringify(result))
+    console.log(JSON.stringify(result));
+    alert(JSON.stringify(result));
   };
   return (
     <div className="container">
@@ -114,6 +126,9 @@ export default function Register() {
                     </button>
                   </div>
                 </div>
+              </form>
+              <form onSubmit={submitDel}>
+                <button className="btn btn-danger ">DELETE</button>
               </form>
             </div>
           </div>
